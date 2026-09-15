@@ -1,0 +1,28 @@
+{
+  "definitions": [
+    {
+      "title": "Promo",
+      "id": "promo"
+    }
+  ],
+  "models": [
+    {
+      "id": "promo",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "valueType": "string",
+          "label": "Title"
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "valueType": "string",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
