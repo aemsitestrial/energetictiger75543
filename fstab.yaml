@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: "https://author-p153710-e1614654.adobeaemcloud.com/bin/franklin.delivery/aemsitestrial/aem-boilerplate-xcom/main"
+    url: "https://author-p220207-e2271469.adobeaemcloud.com/bin/franklin.delivery/aemsitestrial/energetictiger75543/local"
     type: "markup"
     suffix: ".html"
   
