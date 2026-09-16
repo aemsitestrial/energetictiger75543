@@ -86,7 +86,7 @@
   color: #fff;
 }
 
-@media (width < 768px) {
+@media (max-width: 767px) {
   .banner3 {
     min-height: 450px;
   }
