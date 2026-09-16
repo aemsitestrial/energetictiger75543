@@ -452,6 +452,23 @@
     ]
   },
   {
+    "id": "promo",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "valueType": "string",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "valueType": "string",
+        "label": "Description"
+      }
+    ]
+  },
+  {
     "id": "page-metadata",
     "fields": [
       {
@@ -795,6 +812,42 @@
         "valueType": "string",
         "value": "wishlist",
         "readOnly": true
+      }
+    ]
+  },
+  {
+    "id": "banner3",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "description": "Background image for the banner",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "Main banner heading",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "description": "Banner description",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta1Label",
+        "label": "CTA 1 Label",
+        "value": ""
       }
     ]
   }
