@@ -4,6 +4,5 @@ export default function decorate(block) {
     console.warn('Invalid block element passed to decorate()');
     return;
   }
-  
   block.classList.add('promo-loaded');
 }
