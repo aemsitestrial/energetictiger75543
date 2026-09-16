@@ -829,14 +829,6 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "overline",
-        "label": "Overline",
-        "description": "Small text displayed above the title",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "title",
         "label": "Title",
         "description": "Main banner heading",
@@ -855,27 +847,6 @@
         "valueType": "string",
         "name": "cta1Label",
         "label": "CTA 1 Label",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "cta1Link",
-        "label": "CTA 1 Link",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "cta2Label",
-        "label": "CTA 2 Label",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "cta2Link",
-        "label": "CTA 2 Link",
         "value": ""
       }
     ]
