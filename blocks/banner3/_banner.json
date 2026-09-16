@@ -11,7 +11,7 @@
               "name": "banner3",
               "model": "banner3",
               "backgroundImage": "",
-              "altText": "",
+              "altText": "image",
               "overline": "Overline",
               "title": "Banner Title",
               "description": "<p>Enter your description here.</p>",
