@@ -1,12 +1,15 @@
+.banner3-container .banner3-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
 .banner3 {
   position: relative;
   padding: 40px 24px;
-  min-height: 500px;
+  min-height: 300px;
 }
 
-.banner3 h1,
-.banner3 h2,
-.banner3 h3 {
+.banner3 h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -25,37 +28,6 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
-}
-
-.banner3-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  color: var(--background-color);
-}
-
-.banner3-title {
-  margin-bottom: 20px;
-  font-size: 3rem;
-  line-height: 1.1;
-}
-
-.banner3-description {
-  max-width: 700px;
-  font-size: 1.125rem;
-  line-height: 1.6;
-}
-
-.banner3-description p {
-  margin: 0;
-}
-
-.banner3-overline {
-  margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--background-color);
 }
 
 @media (min-width: 900px) {
