@@ -154,45 +154,37 @@
     "fields": [
       {
         "component": "reference",
-        "name": "backgroundImage",
-        "label": "Background Image",
-        "valueType": "string"
+        "name": "image",
+        "label": "Image",
+        "description": "Choose the banner image.",
+        "valueType": "string",
+        "multi": false,
+        "required": true
       },
       {
         "component": "text",
-        "name": "altText",
+        "name": "imageAlt",
         "label": "Image Alt Text",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "overline",
-        "label": "Overline",
-        "valueType": "string"
+        "description": "Describe the image for accessibility.",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "text",
         "name": "title",
         "label": "Title",
-        "valueType": "string"
+        "description": "Enter the banner title.",
+        "valueType": "string",
+        "maxLength": 100,
+        "required": true
       },
       {
         "component": "richtext",
         "name": "description",
         "label": "Description",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "ctaLabel",
-        "label": "CTA Label",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "ctaLink",
-        "label": "CTA Link",
-        "valueType": "string"
+        "description": "Add banner description content.",
+        "valueType": "string",
+        "value": ""
       }
     ]
   },
@@ -380,6 +372,45 @@
         "name": "start-shopping-url",
         "label": "Start Shopping URL",
         "description": "Start Shopping URL"
+      }
+    ]
+  },
+  {
+    "id": "content-card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "description": "Choose the image displayed at the top of the card.",
+        "valueType": "string",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "description": "Describe the image for people using screen readers.",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Enter a short card title.",
+        "valueType": "string",
+        "maxLength": 100,
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Add an optional description with basic formatting.",
+        "valueType": "string",
+        "value": ""
       }
     ]
   },

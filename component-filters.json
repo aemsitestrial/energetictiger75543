@@ -410,6 +410,12 @@
     ]
   },
   {
+    "id": "section",
+    "components": [
+      "banner3"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"

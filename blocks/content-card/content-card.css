@@ -1,0 +1,36 @@
+.content-card {
+  overflow: hidden;
+  border: var(--shape-border-width-1) solid var(--color-neutral-500);
+  background-color: var(--background-color);
+}
+
+.content-card > picture,
+.content-card > div:first-child:not(.content-card-content) {
+  display: block;
+  line-height: 0;
+}
+
+.content-card > picture img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.content-card-content {
+  padding: var(--spacing-medium);
+}
+
+.content-card-content h3 {
+  margin: 0;
+}
+
+.content-card-description {
+  margin-top: var(--spacing-small);
+}
+
+@media (max-width: 600px) {
+  .content-card-content {
+    padding: var(--spacing-small);
+  }
+}
