@@ -57,12 +57,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "section",
-      "components": [
-        "banner3"
-      ]
-    }
-  ]
+  "filters": []
 }
