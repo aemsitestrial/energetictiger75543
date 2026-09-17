@@ -193,6 +193,31 @@
         "description": "Add banner description content.",
         "valueType": "string",
         "value": ""
+      },
+      {
+        "component": "container",
+        "name": "ctaItems",
+        "label": "CTA Links",
+        "description": "Add, remove, or reorder CTA links.",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "label",
+            "label": "CTA Label",
+            "description": "Text displayed for the CTA link.",
+            "valueType": "string",
+            "required": true
+          },
+          {
+            "component": "aem-content",
+            "name": "url",
+            "label": "CTA URL",
+            "description": "Destination for the CTA link.",
+            "valueType": "string",
+            "required": true
+          }
+        ]
       }
     ]
   },

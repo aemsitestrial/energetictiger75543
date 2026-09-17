@@ -2,15 +2,11 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const [
-    imageRow,
-    overlineRow,
-    titleRow,
-    descriptionRow,
-  ] = [...block.children];
+  const rows = [...block.children];
+  const [imageRow, altRow, overlineRow, titleRow, descriptionRow, ctaItemsRow] = rows;
 
   const image = imageRow?.querySelector('img');
-  const alt = image?.alt || '';
+  const alt = altRow?.textContent.trim() || image?.alt || '';
   const overline = overlineRow?.textContent.trim();
   const title = titleRow?.textContent.trim();
   const description = descriptionRow?.innerHTML.trim();
@@ -34,6 +30,11 @@ export default function decorate(block) {
     picture = optimizedPicture;
   }
 
+  const ctas = [...(ctaItemsRow?.querySelectorAll('a') || [])].map((link) => ({
+    label: link.textContent.trim(),
+    url: link.href || link.getAttribute('href'),
+  })).filter(({ label, url }) => label && url);
+
   const content = document.createElement('div');
   content.className = 'banner3-content';
 
@@ -56,6 +57,28 @@ export default function decorate(block) {
     descriptionElement.className = 'banner3-description';
     descriptionElement.innerHTML = description;
     content.append(descriptionElement);
+  }
+
+  if (ctas.length) {
+    const ctaList = document.createElement('ul');
+    ctaList.className = 'banner3-ctas';
+
+    ctas.forEach(({ label, url }) => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = url;
+      link.textContent = label;
+
+      const arrow = document.createElement('span');
+      arrow.className = 'banner3-cta-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '→';
+      link.append(arrow);
+      item.append(link);
+      ctaList.append(item);
+    });
+
+    content.append(ctaList);
   }
 
   block.classList.add('banner3');

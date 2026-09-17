@@ -7,6 +7,7 @@ Banner3 is a custom promotional banner block used to display marketing content.
 
 ### Fields
 - title
+- overline
 - description
 - image
 - CTA text
