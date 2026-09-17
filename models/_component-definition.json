@@ -48,6 +48,9 @@
         },
         {
           "...": "../blocks/banner3/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/content-card/_*.json#/definitions"
         }
       ]
     },
