@@ -31,10 +31,14 @@ export default function decorate(block) {
     picture = optimizedPicture;
   }
 
-  const ctas = [...(ctaItemsRow?.querySelectorAll('a') || [])].map((link) => ({
-    label: link.textContent.trim(),
-    url: link.href || link.getAttribute('href'),
-  })).filter(({ label, url }) => label && url);
+  const ctas = [...(ctaItemsRow?.children || [])].map((item) => {
+    const fields = [...item.children];
+    const link = item.querySelector('a');
+    return {
+      label: fields[0]?.textContent.trim() || link?.textContent.trim(),
+      url: link?.href || fields[1]?.textContent.trim(),
+    };
+  }).filter(({ label, url }) => label && url);
 
   const content = document.createElement('div');
   content.className = 'banner3-content';
