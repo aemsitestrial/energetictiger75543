@@ -3,13 +3,14 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const rows = [...block.children];
-  const [imageRow, altRow, overlineRow, titleRow, descriptionRow, ctaItemsRow] = rows;
+  const [mediaRow, contentRow, ctaItemsRow] = rows;
+  const contentFields = [...(contentRow?.children || [])];
 
-  const image = imageRow?.querySelector('img');
-  const alt = altRow?.textContent.trim() || image?.alt || '';
-  const overline = overlineRow?.textContent.trim();
-  const title = titleRow?.textContent.trim();
-  const description = descriptionRow?.innerHTML.trim();
+  const image = mediaRow?.querySelector('img');
+  const alt = mediaRow?.textContent.trim() || image?.alt || '';
+  const overline = contentFields[0]?.textContent.trim();
+  const title = contentFields[1]?.textContent.trim();
+  const description = contentFields[2]?.innerHTML.trim();
 
   let picture = image?.closest('picture');
 

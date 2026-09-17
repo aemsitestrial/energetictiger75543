@@ -22,7 +22,7 @@
       "fields": [
         {
           "component": "reference",
-          "name": "image",
+          "name": "media_image",
           "label": "Image",
           "description": "Choose the banner image.",
           "valueType": "string",
@@ -31,7 +31,7 @@
         },
         {
           "component": "text",
-          "name": "imageAlt",
+          "name": "media_imageAlt",
           "label": "Image Alt Text",
           "description": "Describe the image for accessibility.",
           "valueType": "string",
@@ -39,7 +39,7 @@
         },
         {
           "component": "text",
-          "name": "overline",
+          "name": "content_overline",
           "label": "Overline",
           "description": "Enter the overline text displayed above the title.",
           "valueType": "string",
@@ -47,7 +47,7 @@
         },
         {
           "component": "text",
-          "name": "title",
+          "name": "content_title",
           "label": "Title",
           "description": "Enter the banner title.",
           "valueType": "string",
@@ -56,7 +56,7 @@
         },
         {
           "component": "richtext",
-          "name": "description",
+          "name": "content_description",
           "label": "Description",
           "description": "Add banner description content.",
           "valueType": "string",
