@@ -171,6 +171,14 @@
       },
       {
         "component": "text",
+        "name": "overline",
+        "label": "Overline",
+        "description": "Enter the overline text displayed above the title.",
+        "valueType": "string",
+        "maxLength": 100
+      },
+      {
+        "component": "text",
         "name": "title",
         "label": "Title",
         "description": "Enter the banner title.",
