@@ -4,18 +4,17 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const [
     imageRow,
-    overlineRow,
-    titleRow,
+    headlineRow,
     descriptionRow,
+    ctaRow,
   ] = [...block.children];
 
-  const image = imageRow?.querySelector('img');
-  const overline = overlineRow?.textContent.trim();
-  const title = titleRow?.textContent.trim();
+  /* Image */
 
+  const image = imageRow?.querySelector('img');
   let picture = image?.closest('picture');
 
-  if (image) {
+  if (image && picture) {
     const optimizedPicture = createOptimizedPicture(
       image.src,
       image.alt || '',
@@ -34,34 +33,50 @@ export default function decorate(block) {
 
   block.classList.add('content-card');
 
+  /* Content Wrapper */
+
   const content = document.createElement('div');
   content.className = 'content-card-content';
 
-  // Overline
-  if (overline) {
-    const overlineElement = document.createElement('div');
-    overlineElement.className = 'content-card-overline';
-    overlineElement.textContent = overline;
-    content.append(overlineElement);
+  /* Headline (Overline + Title) */
+
+  if (headlineRow) {
+    const headlineContainer = document.createElement('div');
+    headlineContainer.innerHTML = headlineRow.innerHTML;
+
+    const overline = headlineContainer.querySelector('p');
+    const title = headlineContainer.querySelector(
+      'h1, h2, h3, h4, h5, h6',
+    );
+
+    if (overline) {
+      overline.classList.add('content-card-overline');
+      content.append(overline);
+    }
+
+    if (title) {
+      title.classList.add('content-card-title');
+      content.append(title);
+    }
   }
 
-  // Title
-  if (title) {
-    const titleElement = document.createElement('h1');
-    titleElement.className = 'content-card-title';
-    titleElement.textContent = title;
-    content.append(titleElement);
+  /* Description */
+
+  if (descriptionRow?.innerHTML.trim()) {
+    const description = document.createElement('div');
+    description.className = 'content-card-description';
+    description.innerHTML = descriptionRow.innerHTML;
+
+    content.append(description);
   }
 
-  // Description + CTA links
-  if (descriptionRow) {
-    const descriptionElement = document.createElement('div');
-    descriptionElement.className = 'content-card-description';
+  /* CTA Links */
 
-    descriptionElement.innerHTML = descriptionRow.innerHTML;
+  if (ctaRow?.innerHTML.trim()) {
+    const ctaContainer = document.createElement('div');
+    ctaContainer.innerHTML = ctaRow.innerHTML;
 
-    // Style any links in the rich text as CTA links
-    const links = descriptionElement.querySelectorAll('a');
+    const links = [...ctaContainer.querySelectorAll('a')];
 
     if (links.length) {
       const ctaList = document.createElement('ul');
@@ -72,31 +87,28 @@ export default function decorate(block) {
 
         const arrow = document.createElement('span');
         arrow.className = 'content-card-cta-arrow';
-        arrow.innerHTML = '&rarr;';
+        arrow.textContent = '→';
 
         link.append(arrow);
 
         li.append(link);
         ctaList.append(li);
-
-        // remove original parent paragraph
-        if (link.closest('p')) {
-          link.closest('p').remove();
-        }
       });
 
-      content.append(descriptionElement);
       content.append(ctaList);
-    } else {
-      content.append(descriptionElement);
     }
   }
+
+  /* Rebuild DOM */
 
   block.replaceChildren();
 
   if (picture) {
-    picture.classList.add('content-card-media');
-    block.append(picture);
+    const mediaWrapper = document.createElement('div');
+    mediaWrapper.className = 'content-card-media';
+
+    mediaWrapper.append(picture);
+    block.append(mediaWrapper);
   }
 
   block.append(content);

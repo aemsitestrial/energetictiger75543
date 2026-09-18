@@ -421,27 +421,26 @@
         "required": true
       },
       {
-        "component": "text",
-        "name": "overline",
-        "label": "Overline",
-        "description": "Text displayed above the title.",
+        "component": "richtext",
+        "name": "headline",
+        "label": "Headline",
+        "description": "Add overline and title. Example: paragraph for overline and heading for title.",
         "valueType": "string",
-        "maxLength": 100
-      },
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title",
-        "description": "Enter the banner title.",
-        "valueType": "string",
-        "maxLength": 100,
-        "required": true
+        "value": ""
       },
       {
         "component": "richtext",
         "name": "description",
-        "label": "Description & CTA Links",
-        "description": "Add description and CTA links.",
+        "label": "Description",
+        "description": "Add banner description.",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "cta",
+        "label": "CTA Links",
+        "description": "Add CTA links as separate links.",
         "valueType": "string",
         "value": ""
       }
