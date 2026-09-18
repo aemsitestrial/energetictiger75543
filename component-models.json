@@ -415,24 +415,24 @@
         "component": "reference",
         "name": "image",
         "label": "Image",
-        "description": "Choose the image displayed at the top of the card.",
+        "description": "Choose the banner image.",
         "valueType": "string",
         "multi": false,
         "required": true
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text",
-        "description": "Describe the image for people using screen readers.",
+        "name": "overline",
+        "label": "Overline",
+        "description": "Text displayed above the title.",
         "valueType": "string",
-        "required": true
+        "maxLength": 100
       },
       {
         "component": "text",
         "name": "title",
         "label": "Title",
-        "description": "Enter a short card title.",
+        "description": "Enter the banner title.",
         "valueType": "string",
         "maxLength": 100,
         "required": true
@@ -440,8 +440,8 @@
       {
         "component": "richtext",
         "name": "description",
-        "label": "Description",
-        "description": "Add an optional description with basic formatting.",
+        "label": "Description & CTA Links",
+        "description": "Add description and CTA links.",
         "valueType": "string",
         "value": ""
       }
