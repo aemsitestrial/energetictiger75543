@@ -46,35 +46,34 @@ export default function decorate(block) {
     const container = document.createElement('div');
     container.innerHTML = contentRow.innerHTML;
 
-    const title = container.querySelector(
-      'h1, h2, h3, h4, h5, h6',
-    );
+    const elements = [...container.children];
 
-    const paragraphs = [...container.querySelectorAll('p')];
+    elements.forEach((element) => {
+      if (
+        element.matches('p')
+        && !content.querySelector('.content-card-overline')
+      ) {
+        element.classList.add('content-card-overline');
+        content.append(element);
+      } else if (
+        element.matches('h1, h2, h3, h4, h5, h6')
+      ) {
+        element.classList.add('content-card-title');
+        content.append(element);
+      } else if (element.matches('p')) {
+        let description = content.querySelector(
+          '.content-card-description',
+        );
 
-    if (paragraphs.length > 0) {
-      const overline = document.createElement('div');
-      overline.className = 'content-card-overline';
-      overline.textContent = paragraphs[0].textContent.trim();
+        if (!description) {
+          description = document.createElement('div');
+          description.className = 'content-card-description';
+          content.append(description);
+        }
 
-      content.append(overline);
-    }
-
-    if (title) {
-      title.classList.add('content-card-title');
-      content.append(title);
-    }
-
-    if (paragraphs.length > 1) {
-      const description = document.createElement('div');
-      description.className = 'content-card-description';
-
-      paragraphs.slice(1).forEach((paragraph) => {
-        description.append(paragraph.cloneNode(true));
-      });
-
-      content.append(description);
-    }
+        description.append(element);
+      }
+    });
   }
 
   /* CTA Links Rich Text */
