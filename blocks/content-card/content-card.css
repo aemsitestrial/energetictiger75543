@@ -4,18 +4,27 @@
 }
 
 .content-card {
-  background: linear-gradient(
-    135deg,
-    #4f7ff5 0%,
-    #3554a6 100%
-  );
   color: #fff;
   padding: 100px 50px;
+}
+
+.content-card--gradient {
+  background: linear-gradient(127.46deg, #4e84ff -1.37%, #2f4f99 40.78%);
+}
+
+.content-card--black {
+  background: #000;
+}
+
+.content-card--white {
+  background: #fff;
+  color: #111;
 }
 
 .content-card-layout {
   display: grid;
   grid-template-columns: 390px 380px;
+  grid-template-areas: "content media";
   justify-content: center;
   align-items: center;
   column-gap: 110px;
@@ -25,6 +34,12 @@
 .content-card-text {
   display: flex;
   align-items: center;
+  grid-area: content;
+}
+
+.content-card--content-right .content-card-layout {
+  grid-template-columns: 380px 390px;
+  grid-template-areas: "media content";
 }
 
 .content-card-content {
@@ -47,6 +62,10 @@
   color: #fff;
 }
 
+.content-card--white .content-card-title {
+  color: #111;
+}
+
 .content-card-description {
   margin-top: 22px;
   max-width: 390px;
@@ -59,7 +78,13 @@
   margin: 0;
 }
 
+.content-card--white .content-card-overline,
+.content-card--white .content-card-description {
+  color: rgb(17 17 17 / 90%);
+}
+
 .content-card-media {
+  grid-area: media;
   width: 380px;
 }
 
@@ -81,8 +106,18 @@
 
   .content-card-layout {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "media";
     row-gap: 40px;
     min-height: auto;
+  }
+
+  .content-card--content-right .content-card-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "media";
   }
 
   .content-card-media {
@@ -117,14 +152,18 @@
 }
 
 .content-card-ctas {
-  margin: 56px 0 0;
+  margin: 48px 0 0;
   padding: 0;
   list-style: none;
-  width: 345px;
+  width: 285px;
 }
 
 .content-card-ctas li {
   border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+.content-card--white .content-card-ctas li {
+  border-color: rgb(17 17 17 / 20%);
 }
 
 .content-card-ctas a {
@@ -132,12 +171,16 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
+}
+
+.content-card--white .content-card-ctas a {
+  color: #111;
 }
 
 .content-card-ctas a:hover,
@@ -147,8 +190,8 @@
 
 .content-card-cta-arrow {
   flex-shrink: 0;
-  margin-left: 32px;
-  font-size: 24px;
+  margin-left: 24px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 1;
 }

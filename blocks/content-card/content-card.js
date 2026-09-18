@@ -6,7 +6,11 @@ export default function decorate(block) {
     imageRow,
     contentRow,
     ctaRow,
+    variantRow,
   ] = [...block.children];
+
+  const [background = 'gradient', alignment = 'left'] = variantRow
+    ?.textContent.trim().toLowerCase().split('-') || [];
 
   let picture;
 
@@ -31,7 +35,14 @@ export default function decorate(block) {
     picture = optimizedPicture;
   }
 
-  block.classList.add('content-card');
+  const backgroundVariants = ['white', 'black', 'gradient'];
+  const alignmentVariants = ['left', 'right'];
+
+  block.classList.add(
+    'content-card',
+    `content-card--${backgroundVariants.includes(background) ? background : 'gradient'}`,
+    `content-card--content-${alignmentVariants.includes(alignment) ? alignment : 'left'}`,
+  );
 
   const content = document.createElement('div');
   content.className = 'content-card-content';

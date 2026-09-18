@@ -363,6 +363,39 @@
         "description": "Add CTA links.",
         "valueType": "string",
         "value": ""
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Background and Content Alignment",
+        "description": "Choose the background color and content position.",
+        "value": "gradient-left",
+        "options": [
+          {
+            "name": "White - Content Left",
+            "value": "white-left"
+          },
+          {
+            "name": "White - Content Right",
+            "value": "white-right"
+          },
+          {
+            "name": "Black - Content Left",
+            "value": "black-left"
+          },
+          {
+            "name": "Black - Content Right",
+            "value": "black-right"
+          },
+          {
+            "name": "Gradient - Content Left",
+            "value": "gradient-left"
+          },
+          {
+            "name": "Gradient - Content Right",
+            "value": "gradient-right"
+          }
+        ]
       }
     ]
   },
