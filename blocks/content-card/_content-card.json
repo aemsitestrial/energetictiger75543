@@ -26,8 +26,7 @@
           "label": "Image",
           "description": "Choose the banner image.",
           "valueType": "string",
-          "multi": false,
-          "required": true
+          "multi": false
         },
         {
           "component": "richtext",
@@ -35,14 +34,14 @@
           "label": "Content",
           "description": "Add overline, title and description.",
           "valueType": "string",
-          "value": "",
-          "required": true
+          "required": true,
+          "value": ""
         },
         {
           "component": "container",
           "name": "ctaItems",
           "label": "CTA Links",
-          "description": "Add, remove, or reorder CTA links.",
+          "description": "Add CTA links.",
           "multi": true,
           "fields": [
             {
@@ -53,7 +52,7 @@
               "required": true
             },
             {
-              "component": "aem-content",
+              "component": "text",
               "name": "url",
               "label": "CTA URL",
               "valueType": "string",

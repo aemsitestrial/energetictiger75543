@@ -2,11 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const [
-    imageRow,
-    contentRow,
-    ctaRow,
-  ] = [...block.children];
+  const [imageRow, contentRow, ctaRow] = [...block.children];
 
   const image = imageRow?.querySelector('img');
   let picture = image?.closest('picture');
@@ -37,26 +33,17 @@ export default function decorate(block) {
   const content = document.createElement('div');
   content.className = 'content-card-content';
 
-  /* Content Field
-   *
-   * <p>Overline</p>
-   * <h1>Title</h1>
-   * <p>Description</p>
-   */
-
   if (contentRow) {
     const container = document.createElement('div');
     container.innerHTML = contentRow.innerHTML;
 
-    const overline = container.querySelector('p');
-    const title = container.querySelector(
-      'h1, h2, h3, h4, h5, h6',
-    );
-
+    const title = container.querySelector('h1, h2, h3, h4, h5, h6');
     const paragraphs = [...container.querySelectorAll('p')];
 
-    if (overline) {
-      overline.classList.add('content-card-overline');
+    if (paragraphs.length > 0) {
+      const overline = document.createElement('div');
+      overline.className = 'content-card-overline';
+      overline.textContent = paragraphs[0].textContent.trim();
       content.append(overline);
     }
 
@@ -77,28 +64,35 @@ export default function decorate(block) {
     }
   }
 
-  /* CTA Links */
-
-  /* CTA Links */
-
   if (ctaRow) {
     const ctaList = document.createElement('ul');
     ctaList.className = 'content-card-ctas';
 
-    const links = ctaRow.querySelectorAll('a');
+    const rows = [...ctaRow.children];
 
-    links.forEach((link) => {
-      const li = document.createElement('li');
+    rows.forEach((row) => {
+      const values = [...row.querySelectorAll('div, p, span')];
 
-      const arrow = document.createElement('span');
-      arrow.className = 'content-card-cta-arrow';
-      arrow.textContent = '→';
+      if (values.length >= 2) {
+        const label = values[0].textContent.trim();
+        const url = values[1].textContent.trim();
 
-      link.classList.add('content-card-cta-link');
-      link.append(arrow);
+        if (label && url) {
+          const li = document.createElement('li');
 
-      li.append(link);
-      ctaList.append(li);
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = label;
+
+          const arrow = document.createElement('span');
+          arrow.className = 'content-card-cta-arrow';
+          arrow.textContent = '→';
+
+          link.append(arrow);
+          li.append(link);
+          ctaList.append(li);
+        }
+      }
     });
 
     if (ctaList.children.length) {
