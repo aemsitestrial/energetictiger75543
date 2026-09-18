@@ -150,78 +150,6 @@
     ]
   },
   {
-    "id": "banner3",
-    "fields": [
-      {
-        "component": "reference",
-        "name": "media_image",
-        "label": "Image",
-        "description": "Choose the banner image.",
-        "valueType": "string",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "media_imageAlt",
-        "label": "Image Alt Text",
-        "description": "Describe the image for accessibility.",
-        "valueType": "string",
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "content_overline",
-        "label": "Overline",
-        "description": "Enter the overline text displayed above the title.",
-        "valueType": "string",
-        "maxLength": 100
-      },
-      {
-        "component": "text",
-        "name": "content_title",
-        "label": "Title",
-        "description": "Enter the banner title.",
-        "valueType": "string",
-        "maxLength": 100,
-        "required": true
-      },
-      {
-        "component": "richtext",
-        "name": "content_description",
-        "label": "Description",
-        "description": "Add banner description content.",
-        "valueType": "string",
-        "value": ""
-      },
-      {
-        "component": "container",
-        "name": "ctaItems",
-        "label": "CTA Links",
-        "description": "Add, remove, or reorder CTA links.",
-        "multi": true,
-        "fields": [
-          {
-            "component": "text",
-            "name": "label",
-            "label": "CTA Label",
-            "description": "Text displayed for the CTA link.",
-            "valueType": "string",
-            "required": true
-          },
-          {
-            "component": "aem-content",
-            "name": "url",
-            "label": "CTA URL",
-            "description": "Destination for the CTA link.",
-            "valueType": "string",
-            "required": true
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
       {
@@ -417,31 +345,22 @@
         "label": "Image",
         "description": "Choose the banner image.",
         "valueType": "string",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "overline",
-        "label": "Overline",
-        "description": "Text displayed above the title.",
-        "valueType": "string",
-        "maxLength": 100
-      },
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title",
-        "description": "Enter the banner title.",
-        "valueType": "string",
-        "maxLength": 100,
-        "required": true
+        "multi": false
       },
       {
         "component": "richtext",
-        "name": "description",
-        "label": "Description & CTA Links",
-        "description": "Add description and CTA links.",
+        "name": "content",
+        "label": "Content",
+        "description": "Add overline, title and description.",
+        "valueType": "string",
+        "required": true,
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "cta",
+        "label": "CTA Links",
+        "description": "Add CTA links.",
         "valueType": "string",
         "value": ""
       }
