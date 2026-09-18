@@ -4,7 +4,7 @@
   "version": "4.0.0",
   "description": "Starter project for Adobe Commerce on Edge Delivery Services",
   "scripts": {
-    "up": "aem up --no-open --forward-browser-logs --allow-insecure",
+    "up": "aem up --no-open --allow-insecure",
     "install:dropins": "node build.mjs && node postinstall.js",
     "postinstall": "npm run install:dropins",
     "postupdate": "npm run install:dropins",
