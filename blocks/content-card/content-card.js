@@ -4,12 +4,9 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const [
     imageRow,
-    headlineRow,
-    descriptionRow,
+    contentRow,
     ctaRow,
   ] = [...block.children];
-
-  /* Image */
 
   const image = imageRow?.querySelector('img');
   let picture = image?.closest('picture');
@@ -33,21 +30,30 @@ export default function decorate(block) {
 
   block.classList.add('content-card');
 
-  /* Content Wrapper */
+  if (!picture) {
+    block.classList.add('content-card-no-image');
+  }
 
   const content = document.createElement('div');
   content.className = 'content-card-content';
 
-  /* Headline (Overline + Title) */
+  /* Content Field
+   *
+   * <p>Overline</p>
+   * <h1>Title</h1>
+   * <p>Description</p>
+   */
 
-  if (headlineRow) {
-    const headlineContainer = document.createElement('div');
-    headlineContainer.innerHTML = headlineRow.innerHTML;
+  if (contentRow) {
+    const container = document.createElement('div');
+    container.innerHTML = contentRow.innerHTML;
 
-    const overline = headlineContainer.querySelector('p');
-    const title = headlineContainer.querySelector(
+    const overline = container.querySelector('p');
+    const title = container.querySelector(
       'h1, h2, h3, h4, h5, h6',
     );
+
+    const paragraphs = [...container.querySelectorAll('p')];
 
     if (overline) {
       overline.classList.add('content-card-overline');
@@ -58,25 +64,23 @@ export default function decorate(block) {
       title.classList.add('content-card-title');
       content.append(title);
     }
-  }
 
-  /* Description */
+    if (paragraphs.length > 1) {
+      const description = document.createElement('div');
+      description.className = 'content-card-description';
 
-  if (descriptionRow?.innerHTML.trim()) {
-    const description = document.createElement('div');
-    description.className = 'content-card-description';
-    description.innerHTML = descriptionRow.innerHTML;
+      paragraphs.slice(1).forEach((paragraph) => {
+        description.append(paragraph.cloneNode(true));
+      });
 
-    content.append(description);
+      content.append(description);
+    }
   }
 
   /* CTA Links */
 
-  if (ctaRow?.innerHTML.trim()) {
-    const ctaContainer = document.createElement('div');
-    ctaContainer.innerHTML = ctaRow.innerHTML;
-
-    const links = [...ctaContainer.querySelectorAll('a')];
+  if (ctaRow) {
+    const links = [...ctaRow.querySelectorAll('a')];
 
     if (links.length) {
       const ctaList = document.createElement('ul');
@@ -85,21 +89,23 @@ export default function decorate(block) {
       links.forEach((link) => {
         const li = document.createElement('li');
 
+        const anchor = document.createElement('a');
+        anchor.href = link.href;
+        anchor.textContent = link.textContent.trim();
+
         const arrow = document.createElement('span');
         arrow.className = 'content-card-cta-arrow';
         arrow.textContent = '→';
 
-        link.append(arrow);
+        anchor.append(arrow);
 
-        li.append(link);
+        li.append(anchor);
         ctaList.append(li);
       });
 
       content.append(ctaList);
     }
   }
-
-  /* Rebuild DOM */
 
   block.replaceChildren();
 

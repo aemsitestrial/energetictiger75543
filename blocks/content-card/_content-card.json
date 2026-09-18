@@ -31,27 +31,35 @@
         },
         {
           "component": "richtext",
-          "name": "headline",
-          "label": "Headline",
-          "description": "Add overline and title. Example: paragraph for overline and heading for title.",
+          "name": "content",
+          "label": "Content",
+          "description": "Add overline, title and description.",
           "valueType": "string",
-          "value": ""
+          "value": "",
+          "required": true
         },
         {
-          "component": "richtext",
-          "name": "description",
-          "label": "Description",
-          "description": "Add banner description.",
-          "valueType": "string",
-          "value": ""
-        },
-        {
-          "component": "richtext",
-          "name": "cta",
+          "component": "container",
+          "name": "ctaItems",
           "label": "CTA Links",
-          "description": "Add CTA links as separate links.",
-          "valueType": "string",
-          "value": ""
+          "description": "Add, remove, or reorder CTA links.",
+          "multi": true,
+          "fields": [
+            {
+              "component": "text",
+              "name": "label",
+              "label": "CTA Label",
+              "valueType": "string",
+              "required": true
+            },
+            {
+              "component": "aem-content",
+              "name": "url",
+              "label": "CTA URL",
+              "valueType": "string",
+              "required": true
+            }
+          ]
         }
       ]
     }
