@@ -79,30 +79,29 @@ export default function decorate(block) {
 
   /* CTA Links */
 
+  /* CTA Links */
+
   if (ctaRow) {
-    const links = [...ctaRow.querySelectorAll('a')];
+    const ctaList = document.createElement('ul');
+    ctaList.className = 'content-card-ctas';
 
-    if (links.length) {
-      const ctaList = document.createElement('ul');
-      ctaList.className = 'content-card-ctas';
+    const links = ctaRow.querySelectorAll('a');
 
-      links.forEach((link) => {
-        const li = document.createElement('li');
+    links.forEach((link) => {
+      const li = document.createElement('li');
 
-        const anchor = document.createElement('a');
-        anchor.href = link.href;
-        anchor.textContent = link.textContent.trim();
+      const arrow = document.createElement('span');
+      arrow.className = 'content-card-cta-arrow';
+      arrow.textContent = '→';
 
-        const arrow = document.createElement('span');
-        arrow.className = 'content-card-cta-arrow';
-        arrow.textContent = '→';
+      link.classList.add('content-card-cta-link');
+      link.append(arrow);
 
-        anchor.append(arrow);
+      li.append(link);
+      ctaList.append(li);
+    });
 
-        li.append(anchor);
-        ctaList.append(li);
-      });
-
+    if (ctaList.children.length) {
       content.append(ctaList);
     }
   }
