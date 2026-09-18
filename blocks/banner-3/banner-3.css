@@ -1,9 +1,9 @@
-.banner3-container .banner3-wrapper {
+.banner-3-wrapper {
   max-width: unset;
   padding: 0;
 }
 
-.banner3 {
+.banner-3 {
   position: relative;
   display: flex;
   align-items: center;
@@ -11,107 +11,125 @@
   padding: 80px 24px;
   overflow: hidden;
   isolation: isolate;
-  color: var(--background-color);
+  color: #fff;
 }
 
-.banner3::after {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: rgb(0 0 0 / 58%);
+.banner-3::after {
   content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(0 0 0 / 58%);
   pointer-events: none;
 }
 
-.banner3 picture {
+/* Media */
+
+.banner-3-media {
   position: absolute;
-  z-index: 0;
   inset: 0;
-  display: block;
+  z-index: 0;
 }
 
-.banner3 img {
-  object-fit: cover;
+.banner-3-media picture {
+  display: block;
   width: 100%;
   height: 100%;
 }
 
-.banner3-content {
+.banner-3-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content */
+
+.banner-3-content {
   position: relative;
   z-index: 2;
   width: min(100%, 720px);
   margin: 0 auto 0 0;
-  background: yellow;
 }
 
-.banner3-overline {
-  margin-bottom: 16px;
+.banner-3-overline {
+  margin: 0 0 16px;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.banner3-title {
+.banner-3-title {
   margin: 0;
   color: inherit;
   font-size: clamp(2.25rem, 6vw, 5rem);
   line-height: 1.05;
 }
 
-.banner3-description {
+.banner-3-description {
   max-width: 58ch;
   margin-top: 24px;
   font-size: 1.1rem;
 }
 
-.banner3-description p:last-child {
+.banner-3-description:last-child {
   margin-bottom: 0;
 }
 
-.banner3-ctas {
+/* CTA */
+
+.banner-3-ctas {
   max-width: 520px;
   margin: 32px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.banner3-ctas li {
+.banner-3-ctas li {
   border-bottom: 1px solid rgb(255 255 255 / 55%);
 }
 
-.banner3-ctas a {
+.banner-3-ctas a {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 24px;
   padding: 14px 0;
   color: inherit;
   font-weight: 700;
   text-decoration: none;
-  transition: padding 180ms ease, color 180ms ease;
+  transition:
+    color 180ms ease,
+    padding-left 180ms ease;
 }
 
-.banner3-ctas a:hover,
-.banner3-ctas a:focus-visible {
+.banner-3-ctas a:hover,
+.banner-3-ctas a:focus-visible {
   padding-left: 10px;
-  color: var(--color-neutral-300);
+  opacity: 0.85;
 }
 
-.banner3-cta-arrow {
+.banner-3-cta-arrow {
   flex: 0 0 auto;
   font-size: 1.35rem;
 }
 
+/* Responsive */
+
 @media (min-width: 900px) {
-  .banner3 {
+  .banner-3 {
     padding: 96px 64px;
   }
 }
 
 @media (max-width: 600px) {
-  .banner3 {
+  .banner-3 {
     min-height: 480px;
     padding: 64px 20px;
+  }
+
+  .banner-3-title {
+    font-size: 2.5rem;
   }
 }
