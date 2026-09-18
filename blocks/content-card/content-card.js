@@ -77,31 +77,32 @@ export default function decorate(block) {
     const ctaList = document.createElement('ul');
     ctaList.className = 'content-card-ctas';
 
-    const ctaText = ctaRow.textContent
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean);
+    const ctaItems = [...ctaRow.querySelectorAll(':scope > div')];
 
-    for (let i = 0; i < ctaText.length; i += 2) {
-      const label = ctaText[i];
-      const url = ctaText[i + 1];
+    ctaItems.forEach((item) => {
+      const cells = [...item.children];
 
-      if (label && url) {
-        const li = document.createElement('li');
+      if (cells.length >= 2) {
+        const label = cells[0]?.textContent?.trim();
+        const url = cells[1]?.textContent?.trim();
 
-        const link = document.createElement('a');
-        link.href = url;
-        link.textContent = label;
+        if (label && url) {
+          const li = document.createElement('li');
 
-        const arrow = document.createElement('span');
-        arrow.className = 'content-card-cta-arrow';
-        arrow.textContent = '→';
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = label;
 
-        link.append(arrow);
-        li.append(link);
-        ctaList.append(li);
+          const arrow = document.createElement('span');
+          arrow.className = 'content-card-cta-arrow';
+          arrow.textContent = '→';
+
+          link.append(arrow);
+          li.append(link);
+          ctaList.append(li);
+        }
       }
-    }
+    });
 
     if (ctaList.children.length) {
       content.append(ctaList);
