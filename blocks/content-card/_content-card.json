@@ -26,39 +26,33 @@
           "label": "Image",
           "description": "Choose the banner image.",
           "valueType": "string",
-          "multi": false
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "overline",
+          "label": "Overline",
+          "description": "Text displayed above the title.",
+          "valueType": "string",
+          "maxLength": 100
+        },
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "description": "Enter the banner title.",
+          "valueType": "string",
+          "maxLength": 100,
+          "required": true
         },
         {
           "component": "richtext",
-          "name": "content",
-          "label": "Content",
-          "description": "Add overline, title and description.",
+          "name": "description",
+          "label": "Description & CTA Links",
+          "description": "Add description and CTA links.",
           "valueType": "string",
-          "required": true,
           "value": ""
-        },
-        {
-          "component": "container",
-          "name": "ctaItems",
-          "label": "CTA Links",
-          "description": "Add CTA links.",
-          "multi": true,
-          "fields": [
-            {
-              "component": "text",
-              "name": "label",
-              "label": "CTA Label",
-              "valueType": "string",
-              "required": true
-            },
-            {
-              "component": "text",
-              "name": "url",
-              "label": "CTA URL",
-              "valueType": "string",
-              "required": true
-            }
-          ]
         }
       ]
     }

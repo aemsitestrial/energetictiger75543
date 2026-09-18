@@ -2,14 +2,20 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const [imageRow, contentRow, ctaRow] = [...block.children];
-
-  /* Image */
+  const [
+    imageRow,
+    overlineRow,
+    titleRow,
+    descriptionRow,
+  ] = [...block.children];
 
   const image = imageRow?.querySelector('img');
+  const overline = overlineRow?.textContent.trim();
+  const title = titleRow?.textContent.trim();
+
   let picture = image?.closest('picture');
 
-  if (image && picture) {
+  if (image) {
     const optimizedPicture = createOptimizedPicture(
       image.src,
       image.alt || '',
@@ -28,96 +34,69 @@ export default function decorate(block) {
 
   block.classList.add('content-card');
 
-  if (!picture) {
-    block.classList.add('content-card-no-image');
-  }
-
-  /* Content */
-
   const content = document.createElement('div');
   content.className = 'content-card-content';
 
-  if (contentRow) {
-    const container = document.createElement('div');
-    container.innerHTML = contentRow.innerHTML;
+  // Overline
+  if (overline) {
+    const overlineElement = document.createElement('div');
+    overlineElement.className = 'content-card-overline';
+    overlineElement.textContent = overline;
+    content.append(overlineElement);
+  }
 
-    const title = container.querySelector(
-      'h1, h2, h3, h4, h5, h6',
-    );
+  // Title
+  if (title) {
+    const titleElement = document.createElement('h1');
+    titleElement.className = 'content-card-title';
+    titleElement.textContent = title;
+    content.append(titleElement);
+  }
 
-    const paragraphs = [...container.querySelectorAll('p')];
+  // Description + CTA links
+  if (descriptionRow) {
+    const descriptionElement = document.createElement('div');
+    descriptionElement.className = 'content-card-description';
 
-    if (paragraphs.length) {
-      const overline = document.createElement('div');
-      overline.className = 'content-card-overline';
-      overline.textContent = paragraphs[0].textContent.trim();
-      content.append(overline);
-    }
+    descriptionElement.innerHTML = descriptionRow.innerHTML;
 
-    if (title) {
-      title.classList.add('content-card-title');
-      content.append(title);
-    }
+    // Style any links in the rich text as CTA links
+    const links = descriptionElement.querySelectorAll('a');
 
-    if (paragraphs.length > 1) {
-      const description = document.createElement('div');
-      description.className = 'content-card-description';
+    if (links.length) {
+      const ctaList = document.createElement('ul');
+      ctaList.className = 'content-card-ctas';
 
-      paragraphs.slice(1).forEach((paragraph) => {
-        description.append(paragraph.cloneNode(true));
+      links.forEach((link) => {
+        const li = document.createElement('li');
+
+        const arrow = document.createElement('span');
+        arrow.className = 'content-card-cta-arrow';
+        arrow.innerHTML = '&rarr;';
+
+        link.append(arrow);
+
+        li.append(link);
+        ctaList.append(li);
+
+        // remove original parent paragraph
+        if (link.closest('p')) {
+          link.closest('p').remove();
+        }
       });
 
-      content.append(description);
-    }
-  }
-
-  /* CTA Links */
-
-  if (ctaRow) {
-    const ctaList = document.createElement('ul');
-    ctaList.className = 'content-card-ctas';
-
-    const ctaItems = [...ctaRow.querySelectorAll(':scope > div')];
-
-    ctaItems.forEach((item) => {
-      const cells = [...item.children];
-
-      if (cells.length >= 2) {
-        const label = cells[0]?.textContent?.trim();
-        const url = cells[1]?.textContent?.trim();
-
-        if (label && url) {
-          const li = document.createElement('li');
-
-          const link = document.createElement('a');
-          link.href = url;
-          link.textContent = label;
-
-          const arrow = document.createElement('span');
-          arrow.className = 'content-card-cta-arrow';
-          arrow.textContent = '→';
-
-          link.append(arrow);
-          li.append(link);
-          ctaList.append(li);
-        }
-      }
-    });
-
-    if (ctaList.children.length) {
+      content.append(descriptionElement);
       content.append(ctaList);
+    } else {
+      content.append(descriptionElement);
     }
   }
-
-  /* Rebuild block */
 
   block.replaceChildren();
 
   if (picture) {
-    const mediaWrapper = document.createElement('div');
-    mediaWrapper.className = 'content-card-media';
-    mediaWrapper.append(picture);
-    block.append(mediaWrapper);
+    picture.classList.add('content-card-media');
+    block.append(picture);
   }
 
   block.append(content);
