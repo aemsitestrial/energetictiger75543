@@ -4,6 +4,8 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const [imageRow, contentRow, ctaRow] = [...block.children];
 
+  /* Image */
+
   const image = imageRow?.querySelector('img');
   let picture = image?.closest('picture');
 
@@ -30,6 +32,8 @@ export default function decorate(block) {
     block.classList.add('content-card-no-image');
   }
 
+  /* Content */
+
   const content = document.createElement('div');
   content.className = 'content-card-content';
 
@@ -37,10 +41,13 @@ export default function decorate(block) {
     const container = document.createElement('div');
     container.innerHTML = contentRow.innerHTML;
 
-    const title = container.querySelector('h1, h2, h3, h4, h5, h6');
+    const title = container.querySelector(
+      'h1, h2, h3, h4, h5, h6',
+    );
+
     const paragraphs = [...container.querySelectorAll('p')];
 
-    if (paragraphs.length > 0) {
+    if (paragraphs.length) {
       const overline = document.createElement('div');
       overline.className = 'content-card-overline';
       overline.textContent = paragraphs[0].textContent.trim();
@@ -64,48 +71,50 @@ export default function decorate(block) {
     }
   }
 
+  /* CTA Links */
+
   if (ctaRow) {
     const ctaList = document.createElement('ul');
     ctaList.className = 'content-card-ctas';
 
-    const rows = [...ctaRow.children];
+    const ctaText = ctaRow.textContent
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean);
 
-    rows.forEach((row) => {
-      const values = [...row.querySelectorAll('div, p, span')];
+    for (let i = 0; i < ctaText.length; i += 2) {
+      const label = ctaText[i];
+      const url = ctaText[i + 1];
 
-      if (values.length >= 2) {
-        const label = values[0].textContent.trim();
-        const url = values[1].textContent.trim();
+      if (label && url) {
+        const li = document.createElement('li');
 
-        if (label && url) {
-          const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = url;
+        link.textContent = label;
 
-          const link = document.createElement('a');
-          link.href = url;
-          link.textContent = label;
+        const arrow = document.createElement('span');
+        arrow.className = 'content-card-cta-arrow';
+        arrow.textContent = '→';
 
-          const arrow = document.createElement('span');
-          arrow.className = 'content-card-cta-arrow';
-          arrow.textContent = '→';
-
-          link.append(arrow);
-          li.append(link);
-          ctaList.append(li);
-        }
+        link.append(arrow);
+        li.append(link);
+        ctaList.append(li);
       }
-    });
+    }
 
     if (ctaList.children.length) {
       content.append(ctaList);
     }
   }
 
+  /* Rebuild block */
+
   block.replaceChildren();
 
   if (picture) {
     const mediaWrapper = document.createElement('div');
     mediaWrapper.className = 'content-card-media';
-
     mediaWrapper.append(picture);
     block.append(mediaWrapper);
   }
