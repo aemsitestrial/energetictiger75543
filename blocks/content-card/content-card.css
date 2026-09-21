@@ -37,18 +37,21 @@
 }
 
 .content-card-text {
-  grid-area: content;
   display: flex;
   align-items: center;
+  grid-area: content;
 }
 
 .content-card-content {
   width: 100%;
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .content-card-overline {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
@@ -68,7 +71,7 @@
 }
 
 .content-card-description {
-  margin-top: 24px;
+  margin: 0;
   max-width: 600px;
   font-size: 16px;
   line-height: 1.8;
@@ -115,8 +118,8 @@
 }
 
 .content-card-ctas li {
+  width: 100%;
   border-bottom: 1px solid rgb(255 255 255 / 30%);
-  width: 400px;
 }
 
 .content-card--white .content-card-ctas li {
@@ -124,21 +127,22 @@
 }
 
 .content-card-ctas a {
-  display: flex !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   min-height: 44px;
-  padding: 16px 0 !important;
+  padding: 16px 0;
   color: #fff;
-  text-decoration: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   font-size: 18px;
   font-weight: 400;
-  line-height: 80%;
+  line-height: 1.4;
 }
-
 
 .content-card--white .content-card-ctas a {
   color: #111;
@@ -172,10 +176,7 @@
     gap: 40px;
   }
 
-  .content-card-content {
-    max-width: 100%;
-  }
-
+  .content-card-content,
   .content-card-description {
     max-width: 100%;
   }
