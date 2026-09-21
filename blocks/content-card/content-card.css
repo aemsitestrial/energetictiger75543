@@ -6,7 +6,6 @@
 .content-card {
   color: #fff;
   max-width: 1440px;
-  min-height: 920px;
   margin: 0 auto;
   padding: 160px 80px;
 }
@@ -26,35 +25,30 @@
 
 .content-card-layout {
   display: grid;
-  grid-template-columns: 670px 600px;
+  grid-template-columns: minmax(0, 600px) minmax(0, 600px);
   grid-template-areas: "content media";
   justify-content: center;
   align-items: center;
-  column-gap: 90px;
-  min-height: 600px;
-}
-
-.content-card-text {
-  display: flex;
-  align-items: center;
-  grid-area: content;
+  gap: 80px;
 }
 
 .content-card--content-right .content-card-layout {
-  grid-template-columns: 600px 670px;
   grid-template-areas: "media content";
 }
 
-.content-card-content {
-  width: 670px;
-  max-width: 670px;
+.content-card-text {
+  grid-area: content;
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  align-items: center;
+}
+
+.content-card-content {
+  width: 100%;
+  max-width: 600px;
 }
 
 .content-card-overline {
-  margin: 0;
+  margin: 0 0 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
@@ -63,7 +57,7 @@
 
 .content-card-title {
   margin: 0;
-  font-size: 2.1rem;
+  font-size: 2.5rem;
   font-weight: 300;
   line-height: 1.1;
   color: #fff;
@@ -75,7 +69,7 @@
 
 .content-card-description {
   margin-top: 24px;
-  max-width: 670px;
+  max-width: 600px;
   font-size: 16px;
   line-height: 1.8;
   color: rgb(255 255 255 / 95%);
@@ -90,9 +84,12 @@
   color: rgb(17 17 17 / 90%);
 }
 
+/* IMAGE */
+
 .content-card-media {
   grid-area: media;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .content-card-media picture {
@@ -101,27 +98,25 @@
 
 .content-card-media img {
   display: block;
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
 /* CTA */
 
 .content-card-ctas {
-  margin: 0;
+  margin: 40px 0 0;
   padding: 0;
   list-style: none;
-  width: 460px;
+  width: 100%;
   max-width: 460px;
 }
 
 .content-card-ctas li {
   border-bottom: 1px solid rgb(255 255 255 / 30%);
-}
-
-.content-card-ctas li:not(:last-child) {
-  margin-bottom: 12px;
+  width: 400px;
 }
 
 .content-card--white .content-card-ctas li {
@@ -129,21 +124,19 @@
 }
 
 .content-card-ctas a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
   width: 100%;
-  min-height: 40px;
-  padding: 10px 0;
+  min-height: 44px;
+  padding: 16px 0 !important;
   color: #fff;
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 16px;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 80%;
 }
 
 .content-card--white .content-card-ctas a {
@@ -156,10 +149,10 @@
 }
 
 .content-card-cta-arrow {
+  margin-left: auto;
+  padding-left: 32px;
   flex-shrink: 0;
-  margin-left: 24px;
   font-size: 20px;
-  font-weight: 300;
   line-height: 1;
 }
 
@@ -167,8 +160,7 @@
 
 @media (max-width: 991px) {
   .content-card {
-    min-height: auto;
-    padding: 64px 24px;
+    padding: 80px 24px;
   }
 
   .content-card-layout {
@@ -176,34 +168,22 @@
     grid-template-areas:
       "content"
       "media";
-    row-gap: 40px;
-    min-height: auto;
-  }
-
-  .content-card--content-right .content-card-layout {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "content"
-      "media";
+    gap: 40px;
   }
 
   .content-card-content {
-    width: 100%;
+    max-width: 100%;
+  }
+
+  .content-card-description {
     max-width: 100%;
   }
 
   .content-card-media {
-    width: 100%;
-  }
-
-  .content-card-media img {
-    width: 100%;
-    height: auto;
     max-width: 600px;
   }
 
   .content-card-ctas {
-    width: 100%;
     max-width: 460px;
   }
 }
@@ -224,7 +204,11 @@
     line-height: 1.7;
   }
 
-  .content-card-ctas a {
-    font-size: 16px;
+  .content-card-ctas {
+    max-width: 80%;
+  }
+
+  .content-card-cta-arrow {
+    padding-left: 20px;
   }
 }
